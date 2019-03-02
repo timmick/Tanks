@@ -20,7 +20,16 @@
         </script>
     </head>
     <body>
-        <canvas id="canvas"></canvas>
+        <canvas id="canvas">
+          <img id = "tank-image w" src="tank_red w.png" alt="tank_red" style="display:none">
+          <img id = "tank-image s" src="tank_red s.png" alt="tank_red" style="display:none">
+          <img id = "tank_image a" src="tank_red a.png" alt="tank_red" style="display:none">
+          <img id = "tank_image d" src="tank_red d.png" alt="tank_red" style="display:none">
+          <img id = "bulletUp"   src= "shotLarge.png" alt="bullet"     style="display:none">
+          <img id = "bulletDown" src= "shotLargeDown.png" alt="bullet" style="display:none">
+          <img id = "bulletLeft" src= "shotLargeLeft.png" alt="bullet" style="display:none">
+          <img id = "bulletRight"src= "shotLargeRight.png" alt="bullet"style="display:none">
+        </canvas>
         <script>
             let socket
             const fieldWidth = 20
@@ -52,6 +61,13 @@
                 fieldScreenHeight = fieldHeight * cellSize
                 fieldCenterShiftX = (w - fieldScreenWidth) / 2
                 fieldCenterShiftY = (h - fieldScreenHeight) / 2
+
+                              
+                   tankImage = document.getElementById('tank-image w')
+                   tankImageDown = document.getElementById('tank-image s')
+                   bullet = document.getElementById('bulletUp')
+            
+                
                 window.requestAnimationFrame(timestamp => draw(ctx, w, h, timestamp));
             }
               function draw(ctx, w, h, timestamp) 
@@ -74,11 +90,11 @@
                 {
                     const screenX = fieldCenterShiftX + gameObject.x * cellSize
                     const screenY = fieldCenterShiftY + gameObject.y * cellSize
-                    ctx.fillStyle = gameObject.c
-                    ctx.beginPath()
-                    ctx.rect(screenX + 1, screenY + 1, cellSize - 2, cellSize - 2)
-                  ctx.fill()
+                    ctx.drawImage(tankImageDown,screenX + 1, screenY + 1, cellSize - 2, cellSize - 2) 
+                
                 }
+                
+                
                 window.requestAnimationFrame(timestamp => draw(ctx, w, h, timestamp));
             }
               function keyDown(key) 
